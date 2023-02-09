@@ -1,0 +1,58 @@
+{%- extends "navbar_base.html" %}
+{%- block content %}
+<div class="profile">
+    <div class="personal-info">
+        <div class="acc-name">{{ username }}</div>
+        {%- if logname == username %}
+        <div class="edit-profile"><a href="{{ url_for('admin.edit') }}">Edit profile</a></div>
+        <form action="{{ url_for('admin.logout') }}" method="POST" enctype="multipart/form-data" class="logout-button">
+            <input type="submit" name="logout" value="Logout"/>
+        </form>
+        {%- else %}
+        <div class="relationship">
+            <div class="follow-text">
+                {%- if logname_fol_user %}following
+                {%- else %}not following
+                {%- endif %}
+            </div>
+            <form action="{{ url_for('postonly.following', target=request.url) }}" method="POST" enctype="multipart/form-data" class="follow-button">
+                <input type="submit" name="{%- if logname_fol_user %}unfollow{%- else %}follow{%- endif %}" value="{%- if logname_fol_user %}unfollow{%- else %}follow{%- endif %}"/>
+                <input type="hidden" name="username" value="{{ username }}"/>
+                <input type="hidden" name="operation" value="{%- if logname_fol_user %}unfollow{%- else %}follow{%- endif %}"/>
+            </form>
+        </div>
+        {%- endif %}
+        <div class="info">
+            {%- if num_posts == 1 %}{{ num_posts }} post
+            {%- else %}{{ num_posts }} posts
+            {%- endif %}
+            <a href="{{ url_for('users.user_followers', username=username) }}">
+                {%- if num_followers == 1 %}{{ num_followers }} follower
+                {%- else %}{{ num_followers }} followers
+                {%- endif %}
+            </a>
+            <a href="{{ url_for('users.user_following', username=username) }}">{{ num_following }} following</a>
+        </div>
+        <div class="fullname">{{ fullname }} </div>
+    </div>
+    {%- if logname == username %}
+    <form action="{{ url_for('postonly.posts', target=request.url) }}" method="POST" enctype="multipart/form-data" class="upload">
+        <input type="file" name="file" accept="image/*" required/>
+        <input type="submit" name="create_post" value="upload new post"/>
+        <input type="hidden" name="operation" value="create"/>
+    </form>
+    {%- endif %}
+    {%- if num_posts != 0 %}
+    <div class="post user">
+        {%- for idx in range((num_posts + 1) // 2) %}
+        <div class="row-container">
+            <div><a href="{{ url_for('misc.posts', postid=posts[idx * 2].postid) }}"><img src="{{ url_for('misc.render_pic', filename=posts[idx * 2].filename) }}" alt="post {{ posts[idx * 2].postid }}"></a></div>
+            {%- if idx * 2 + 1 != num_posts %}
+            <div><a href="{{ url_for('misc.posts', postid=posts[idx * 2 + 1].postid) }}"><img src="{{ url_for('misc.render_pic', filename=posts[idx * 2 + 1].filename) }}" alt="post {{ posts[idx * 2 + 1].postid }}"></a></div>
+            {%- endif %}
+        </div>
+        {%- endfor %}
+    </div>
+    {%- endif %}
+</div>
+{%- endblock content %}

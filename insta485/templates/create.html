@@ -1,0 +1,24 @@
+{%- extends "navbar_base.html" %}
+{%- block content %}
+<div id="main-container">
+    <div id="forms" class="create">
+        <div id="labels">
+            <div class="row"><label for="photo">Photo</label><br></div>
+            <div class="row"><label for="name">Name</label><br></div>
+            <div class="row"><label for="username">Username</label><br></div>
+            <div class="row"><label for="email">Email</label><br></div>
+            <div class="row"><label for="password">Password</label><br></div>
+        </div>
+        <form action="{{ url_for('postonly.accounts', target=url_for('misc.home')) }}" method="POST" enctype="multipart/form-data" id="CEP">
+            <input id="photo" type="file" name="file" required/><br>
+            <input id="name" type="text" name="fullname" required/><br>
+            <input id="username" type="text" name="username" required/><br>
+            <input id="email" type="text" name="email" required/><br>
+            <input id="password" type="password" name="password" required/><br>
+            <input class="pec" type="submit" name="signup" value="sign up"/>
+            <input type="hidden" name="operation" value="create"/>
+        </form>
+    </div>
+    <div id="bottom-link">Have an account? <a href="{{ url_for('admin.login') }}">Log in</a></div>
+</div>
+{%- endblock content %}

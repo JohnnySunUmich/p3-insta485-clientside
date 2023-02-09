@@ -1,0 +1,519 @@
+html {
+    font-size: 16px;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/* header section */
+header,
+.left-header, .right-header, .right-header-container,
+.home, .home a, .insta {
+    display: flex;
+}
+
+header {
+    justify-content: space-between;
+    height: 50px;
+    padding-top: 5px;
+}
+.left-header {
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 2.3rem;
+}
+.right-header {
+    justify-content: flex-end;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.right-header-container {
+    align-items: center;
+}
+
+.home {
+    height: 100%;
+    padding-right: 25px;
+    border-right: 1px solid black;
+}
+.home a {
+    align-items: center;
+}
+.home img {
+    height: 88%;
+}
+.insta {
+    padding-left: 25px;
+}
+
+.explore {
+    padding-right: 5px;
+    border-right: 2px solid black;
+}
+.logname {
+    padding-left: 5px;
+}
+
+/* horizontal line */
+hr {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+
+/* index.html */
+
+/* post section */
+.post.index {
+    border: 2px solid #b5b5b5;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 1000px;
+}
+
+/* post-header subsection */
+.post.index .header,
+.post.index .post-er, .post.index .time-posted,
+.post.index .pfp, .post.index .pfp a, .post.index .username {
+    display: flex;
+}
+
+.post.index .header {
+    justify-content: space-between;
+    height: 60px;
+    padding: 0px 20px 0px 18px;
+}
+
+.post.index .post-er {
+    justify-content: flex-start;
+}
+.post.index .time-posted {
+    justify-content: flex-end;
+    align-items: center;
+    font-weight: bold;
+}
+
+.post.index .pfp {
+    height: 100%;
+    padding-right: 10px;
+}
+.post.index .pfp a {
+    align-items: center;
+}
+.post.index .pfp img {
+    height: 65%;
+}
+.post.index .username {
+    align-items: center;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.post.index .time-posted a {
+    color: #6e6e6e;
+    width: 125px;
+    text-align: right;
+}
+
+
+/* content-picture subsection */
+.content .pic img {
+    width: 100%;
+    max-height: 720px;
+    object-fit: cover;
+}
+/* remaining subsection */
+.remaining .like {
+    padding: 10px 0px 0px 5px;
+}
+.remaining .comments {
+    padding-left: 5px;
+}
+.remaining .comments p {
+    margin-top: 11px;
+}
+.remaining .comments p a {
+    font-weight: bold;
+}
+
+/* P3: CSR */
+.remaining .comments .each-cmt {
+    margin: 11px 0px 16px 0px;
+}
+.remaining .comments span a {
+    font-weight: bold;
+}
+.remaining .comment-form {
+    padding-left: 5px;
+}
+
+/* new-buttons subsection */
+input[type=text] {
+    border: 1px solid #b5b5b5;
+    height: 17px;
+    width: 175px;
+}
+input[type=password] {
+    width: 175px;
+}
+input[type=submit], button.like-unlike-button, button.delete-comment-button {
+    border: 1px solid #b5b5b5;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 13px;
+    box-shadow: 0.3px 0.3px;
+    padding: 0px 6px;
+}
+input[type=submit]:hover {
+    background-color: buttonface;
+}
+.new-buttons {
+    padding-left: 8px;
+}
+.new-buttons form.likeunlike {
+    margin-bottom: 17px;
+}
+
+/* P3: CSR */
+button.delete-comment-button {
+    float: right;
+    margin-right: 5px;
+}
+button.like-unlike-button:active, button.delete-comment-button:active {
+    background-color: #4583e7;
+    color: black;
+}
+button.like-unlike-button {
+    margin: 5px;
+}
+
+
+/* user.html */
+
+/* profile section */
+.profile {
+    margin-left: 7%;
+    margin-right: 7%;
+}
+
+/* personal-info section */
+.personal-info {
+    padding-left: 8px;
+}
+
+.acc-name {
+    font-size: 2.7rem;
+    padding: 20px 0px 10px 0px;
+}
+.personal-info .info {
+    font-size: 1.2rem;
+    padding-bottom: 18px;
+}
+.personal-info .info a {
+    font-weight: bold;
+}
+.personal-info .fullname {
+    font-size: 1.16rem;
+    padding-bottom: 25px;
+}
+
+.personal-info .edit-profile {
+    padding: 10px 0px 10px 0px;
+    font-weight: bold;
+    font-size: 1.35rem;
+}
+.personal-info form.logout-button {
+    padding: 10px 0px 20px 0px;
+}
+.relationship {
+    display: flex;
+    padding: 8px 0px 18px 0px;
+}
+.relationship .follow-text {
+    font-size: 1.18rem;
+    padding-right: 6px;
+}
+.relationship .follow-button input[type=submit] {
+    padding: 1px 8.5px;
+    font-size: 14px;
+}
+
+/* upload form subsection */
+form.upload {
+    display: flex;
+    align-items: center;
+    height: 75px;
+    border: 1px solid #6e6e6e;
+    border-radius: 4px;
+    margin-bottom: 18px;
+}
+form.upload input[type=file] {
+    padding-left: 5px;
+}
+form.upload input[type=submit] {
+    height: 19px;
+    width: 111px;
+}
+input[type=file] {
+    width: 450px;
+}
+
+/* post subsection */
+.post.user .row-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 10px 0px 10px;
+}
+.post.user div {
+    justify-content: flex-start;
+}
+.post.user div img{
+    height: 333px;
+    width: 341px;
+    object-fit: cover;
+}
+@media (min-width: 2240px) {
+    .post.user div img{
+        height: 500px;
+        width: 545px;
+        object-fit: cover;
+    }
+}
+
+
+/* folexp_base.html */
+.big-header {
+    font-weight: bold;
+    font-size: 1.8rem;
+    padding-left: 5%;
+    padding-top: 45px;
+    padding-bottom: 30px;
+}
+
+.base-container, .base-container .account, .base-container .display,
+.base-container .account .pfp,  .base-container .account .username {
+    display: flex;
+}
+
+.base-container {
+    justify-content: space-between;
+    margin: 0 50px 20px 4%;
+    padding: 0px 20px;
+    border: 2px solid #a6a6a6;
+    border-radius: 5px;
+    height: 75px;
+}
+.base-container .account{
+    justify-content: flex-start;
+}
+.base-container .display {
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.base-container .account .pfp {
+    align-items: center;
+    padding-right: 10px;
+}
+.base-container .account .pfp img {
+    height: 70%;
+}
+.base-container .account .username {
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.base-container input[type=submit] {
+    padding: 1px 8.5px;
+}
+.base-container .display .follow-text {
+    padding-right: 6px;
+    font-size: 1.15rem;
+    font-weight: 549;
+    color: #818181;
+}
+
+
+/* post.html */
+.post-container, .post-container .remaining .header,
+.post-container .header .post-er, .post-container .header .time-posted,
+.post-container .post-er .pfp, .post-container .post-er .pfp a, 
+.post-container .post-er .username {
+    display: flex;
+}
+
+.post-container {
+    /* justify-content: space-between; */
+    border: 2px solid #a6a6a6;
+    border-radius: 5px;
+    height: 620px;
+    width: 845px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.post-container .pic {
+    padding: 5px;
+}
+.post-container .pic img {
+    width: 550px;
+    max-width: 550px;
+    max-height: 610px;
+}
+
+.post-container .remaining {
+    width: 100%;
+    padding: 3px 10px 5px 20px;
+}
+.post-container .remaining .header {
+    justify-content: space-between;
+    height: 11%;
+}
+.post-container .remaining .comments {
+    padding-left: 0px;
+    height: 89%;
+}
+
+.post-container .header .post-er {
+    justify-content: flex-start;
+    align-items: center;
+}
+.post-container .header .time-posted {
+    justify-content: flex-end;
+    align-items: center;
+    
+}
+.post-container .header .time-posted a {
+    color: #6e6e6e;
+    width: 105px;
+    text-align: right;
+}
+
+.post-container .post-er .pfp {
+    width: 25%;
+}
+.post-container .post-er .pfp a {
+    align-items: center;
+}
+.post-container .post-er .pfp img {
+    width: 100%;
+    max-height: 75px;
+}
+.post-container .post-er .username {
+    padding-left: 8px;
+    font-weight: bold;
+}
+
+.post-container .comments .like {
+    padding: 17px 0px 1px 0px;
+}
+.post-container .comment-wrapper {
+    margin-top: 14px;
+}
+.post-container .comment-wrapper p {
+    margin: 0px;
+}
+.post-container input[type=submit] {
+    padding: 0px 14px;
+    font-size: 12px;
+}
+
+.post-container form.likeunlike {
+    padding: 19px 0px 17px 0px;
+}
+.post-container .del-post form {
+    padding: 19px 0px 17px 0px;
+}
+
+
+/* delete.html */
+.delete-container {
+    padding: 10px 30px;
+}
+.delete-container p {
+    font-size: 1.1rem;
+}
+
+
+/* CLEP (create, login, edit, password) */
+#main-container {
+    margin-left: 55px;
+    margin-top: 80px;
+    font-size: 1.15rem;
+}
+
+/* password.html & create.html & edit.html*/
+#forms {
+    display: flex;
+}
+
+#forms.password #labels {  /* password.html */
+    width: 165px;
+}
+#forms.create #labels {    /* create.html */
+    width: 82px;
+}
+#forms.edit #labels {      /* edit.html */
+    width: 51px;
+}
+
+#labels .row {
+    height: 31px;
+}
+
+form#CEP input {
+    margin-bottom: 7px;
+}
+
+form#CEP input[type=submit].pec {
+    width: 58px;
+    height: 18px;
+    margin-bottom: 23px;
+}
+
+/* password.html & edit.html */
+.redirect {
+    font-weight: bold;
+    margin-bottom: 17px;
+}
+
+
+/* edit.html */
+#main-container #lil-profile, #main-container #lil-profile #pfp {
+    display: flex;
+}
+
+#main-container #lil-profile {
+    align-items: center;
+    padding: 5px 0px 28px 15px;
+}
+#main-container #lil-profile #pfp {
+    padding-right: 9px;
+}
+#main-container #lil-profile #pfp img {
+    max-height: 35px;
+}
+#main-container #lil-profile #username {
+    font-weight: bold;
+}
+
+
+/* login.html & create.html */
+#login-navbar {
+    padding-right: 5px;
+    border-right: 0px;
+}
+#bottom-link a {
+    font-weight: bold;
+}
+/* login.html */
+form.login input {
+    margin-bottom: 22px;
+}

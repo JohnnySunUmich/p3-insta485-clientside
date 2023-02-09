@@ -1,0 +1,10 @@
+{%- extends "navbar_base.html" %}
+{%- block content %}
+<div class="delete-container">
+    <p>{{ logname }}</p>
+    <form action="{{ url_for('postonly.accounts', target=url_for('admin.create')) }}" method="POST" enctype="multipart/form-data">
+        <input type="submit" name="delete" value="confirm delete account"/>
+        <input type="hidden" name="operation" value="delete"/>
+    </form>
+</div>
+{%- endblock content %}

@@ -1,0 +1,42 @@
+{%- extends "navbar_base.html" %}
+{%- block content %}
+    {%- for post in posts %}
+    <div class="post index">
+        <div class="header">
+            <div class="post-er">
+                <div class="pfp"><a href="{{ url_for('users.user_profile', username=post.owner) }}"><img src="{{ url_for('misc.render_pic', filename=post.pfp) }}" alt="{{ post.owner }}'s pfp"></a></div>
+                <div class="username"><a href="{{ url_for('users.user_profile', username=post.owner) }}">{{ post.owner }}</a></div>
+            </div>
+            <div class="time-posted"><a href="{{ url_for('misc.posts', postid=post.postid) }}">{{ post.created }}</a></div>
+        </div>
+        <div class="content">
+            <div class="pic"><img src="{{ url_for('misc.render_pic', filename=post.filename) }}" alt="{{ post.owner }}'s {{ post.created }} post"></div>
+            <div class="remaining">
+                <div class="like">
+                    {%- if post.likes == 1 %} {{ post.likes }} like
+                    {%- else %} {{ post.likes }} likes
+                    {%- endif %}
+                </div>
+                <div class="comments">
+                    {%- for comment in post.comments %}
+                    <p><a href="{{ url_for('users.user_profile', username=comment.owner) }}">{{ comment.owner }}</a> {{ comment.text }}</p>
+                    {%- endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="new-buttons index">
+            <form action="{{ url_for('postonly.likes', target=request.url) }}" method="POST" enctype="multipart/form-data" class="likeunlike">
+                <input type="hidden" name="operation" value="{%- if post.liked %}unlike{%- else %}like{%- endif %}"/>
+                <input type="hidden" name="postid" value="{{ post.postid }}"/>
+                <input type="submit" name="{%- if post.liked %}unlike{%- else %}like{%- endif %}" value="{%- if post.liked %}unlike{%- else %}like{%- endif %}"/>
+            </form>
+            <form action="{{ url_for('postonly.comments', target=request.url) }}" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="operation" value="create"/>
+                <input type="hidden" name="postid" value="{{ post.postid }}"/>
+                <input type="text" name="text" required/>
+                <input type="submit" name="comment" value="comment"/>
+            </form>
+        </div>
+    </div>
+    {%- endfor %}
+{%- endblock content %}

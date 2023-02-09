@@ -1,0 +1,12 @@
+{%- extends "navbar_base.html" %}
+{%- block content %}
+<div id="main-container">
+    <form action="{{ url_for('postonly.accounts', target=url_for('misc.home')) }}" method="POST" enctype="multipart/form-data" class="login">
+        <input type="text" name="username" placeholder="username" required/><br>
+        <input type="password" name="password" placeholder="password" required/><br>
+        <input type="submit" value="login"/>
+        <input type="hidden" name="operation" value="login"/>
+    </form>
+    <div id="bottom-link">Don't have an account? <a href="{{ url_for('admin.create') }}">Sign up</a></div>
+</div>
+{%- endblock content %}

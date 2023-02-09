@@ -1,0 +1,25 @@
+{%- extends "navbar_base.html" %}
+{%- block content %}
+<div id="main-container">
+    <div id="lil-profile">
+        <div id="pfp"><img src="{{ url_for('misc.render_pic', filename=filename) }}" alt="{{logname}}'s pfp"></div>
+        <div id="username">{{ logname }}</div>
+    </div>
+    <div id="forms" class="edit">
+        <div id="labels">
+            <div class="row"><label for="photo">Photo</label><br></div>
+            <div class="row"><label for="name">Name</label><br></div>
+            <div class="row"><label for="email">Email</label><br></div>
+        </div>
+        <form action="{{ url_for('postonly.accounts', target=request.url) }}" method="POST" enctype="multipart/form-data" id="CEP">
+            <input id="photo" type="file" name="file" accept="image/*"/><br>
+            <input id="name" type="text" name="fullname" value="{{ fullname }}" required/><br>
+            <input id="email" type="text" name="email" value="{{ email }}" required/><br>
+            <input class="pec" type="submit" name="update" value="submit"/>
+            <input type="hidden" name="operation" value="edit_account"/>
+        </form>
+    </div>
+    <div class="redirect"><a href="{{ url_for('admin.password') }}">Change password</a></div>
+    <div class="redirect"><a href="{{ url_for('admin.delete') }}">Delete account</a></div>
+</div>
+{%- endblock content %}
