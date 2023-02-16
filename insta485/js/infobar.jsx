@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import PropTypes from "prop-types";
 
 export default function InfoBar({
   postLink,
@@ -27,3 +28,11 @@ export default function InfoBar({
     </div>
   );
 }
+
+InfoBar.propTypes = {
+  postLink: PropTypes.string.isRequired,
+  timeCreated: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired,
+  pfp: PropTypes.string.isRequired,
+  posterLink: PropTypes.string.isRequired,
+};

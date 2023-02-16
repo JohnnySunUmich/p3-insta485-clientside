@@ -125,7 +125,7 @@ export default function Post({ url }) {
       }
       return null;
     })();
-  }, [clickedLikeBtn, data.postid, fetchedPost, likes.url, likes.userLiked]);
+  }, [clickedLikeBtn]);
   const likeUnlike = () => {
     setLikes((prev) => ({
       ...prev,
@@ -193,7 +193,7 @@ export default function Post({ url }) {
       }
       return null;
     })();
-  }, [clickedDelBtn, cmtToDel, data.postid, fetchedPost]);
+  }, [clickedDelBtn]);
   const deleteComment = (key) => {
     setCmtToDel(key);
     setClickedDelBtn(!clickedDelBtn);
@@ -221,7 +221,7 @@ export default function Post({ url }) {
       }
       return null;
     })();
-  }, [doubleClickable, data.postid, doubleClicked, fetchedPost]);
+  }, [doubleClickable]);
   const doubleClickToLike = () => {
     if (!likes.userLiked) {
       setLikes((prev) => ({ ...prev, userLiked: true, num: prev.num + 1 }));
