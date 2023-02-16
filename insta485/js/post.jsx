@@ -52,33 +52,31 @@ export default function Post({ url }) {
 
   useEffect(() => {
     (async () => {
-      try {
-        setFetchedPost(false);
-        let ignoreStaleRequest = false; //To cancel the API request.
-        const response = await fetch(url, { credentials: "same-origin" });
-        if (!response.ok) throw Error(response.statusText);
-        const json = await response.json();
-        if (!ignoreStaleRequest) {
-          setFetchedPost(true);
-          setData(json);
-          setInfoBar({
-            postLink: json.postShowUrl,
-            timeCreated: json.created,
-            poster: json.owner,
-            pfp: json.ownerImgUrl,
-            posterLink: json.ownerShowUrl,
-          });
-          setLikes({
-            userLiked: json.likes.lognameLikesThis,
-            num: json.likes.numLikes,
-            url: json.likes.url,
-          });
-          setComments(json.comments);
-        }
-        return () => (ignoreStaleRequest = true); //Cleanup function whenever Post component unmounts or re-renders. Avoid updating state if a Post is about to unmount or re-render.
-      } catch (error) {
-        console.log(error);
+      setFetchedPost(false);
+      let ignoreStaleRequest = false; // To cancel the API request.
+      const response = await fetch(url, { credentials: "same-origin" });
+      if (!response.ok) throw Error(response.statusText);
+      const json = await response.json();
+      if (!ignoreStaleRequest) {
+        setFetchedPost(true);
+        setData(json);
+        setInfoBar({
+          postLink: json.postShowUrl,
+          timeCreated: json.created,
+          poster: json.owner,
+          pfp: json.ownerImgUrl,
+          posterLink: json.ownerShowUrl,
+        });
+        setLikes({
+          userLiked: json.likes.lognameLikesThis,
+          num: json.likes.numLikes,
+          url: json.likes.url,
+        });
+        setComments(json.comments);
       }
+      return () => {
+        ignoreStaleRequest = true;
+      }; // leanup function whenever Post component unmounts or re-renders. Avoid updating state if a Post is about to unmount or re-render.
     })();
   }, [url]);
 
@@ -98,7 +96,7 @@ export default function Post({ url }) {
   // }
 
   useEffect(() => {
-    //state already changed at likeUnlike
+    // state already changed at likeUnlike
     (async () => {
       if (fetchedPost) {
         try {
@@ -118,13 +116,16 @@ export default function Post({ url }) {
             if (!bool) setLikes((prev) => ({ ...prev, url: json.url }));
           }
           setDoubleClickable(false);
-          return () => (bool = true);
+          return () => {
+            bool = true;
+          };
         } catch (error) {
           console.log(error);
         }
       }
+      return null;
     })();
-  }, [clickedLikeBtn]);
+  }, [clickedLikeBtn, data.postid, fetchedPost, likes.url, likes.userLiked]);
   const likeUnlike = () => {
     setLikes((prev) => ({
       ...prev,
@@ -152,13 +153,16 @@ export default function Post({ url }) {
           const json = await response.json();
           if (!bool) setComments([...comments, json]);
           setNewComment("");
-          return () => (bool = true);
+          return () => {
+            bool = true;
+          };
         } catch (error) {
           console.log(error);
         }
       }
+      return null;
     })();
-  }, [cmtSwitch]);
+  }, [cmtSwitch, comments, data.postid, fetchedPost, newComment]);
   const commented = (e) => {
     e.preventDefault();
     setCmtSwitch(!cmtSwitch);
@@ -180,13 +184,16 @@ export default function Post({ url }) {
           if (!getUpdatedCmts.ok) throw Error(response.statusText);
           const json = await getUpdatedCmts.json();
           if (!bool) setComments(json.comments);
-          return () => (bool = true);
+          return () => {
+            bool = true;
+          };
         } catch (error) {
           console.log(error);
         }
       }
+      return null;
     })();
-  }, [clickedDelBtn]);
+  }, [clickedDelBtn, cmtToDel, data.postid, fetchedPost]);
   const deleteComment = (key) => {
     setCmtToDel(key);
     setClickedDelBtn(!clickedDelBtn);
@@ -205,13 +212,16 @@ export default function Post({ url }) {
           if (!response.ok) throw Error(response.statusText);
           const json = await response.json();
           if (!bool) setLikes((prev) => ({ ...prev, url: json.url }));
-          return () => (bool = true);
+          return () => {
+            bool = true;
+          };
         } catch (error) {
           console.log(error);
         }
       }
+      return null;
     })();
-  }, [doubleClickable]);
+  }, [doubleClickable, data.postid, doubleClicked, fetchedPost]);
   const doubleClickToLike = () => {
     if (!likes.userLiked) {
       setLikes((prev) => ({ ...prev, userLiked: true, num: prev.num + 1 }));
@@ -225,7 +235,7 @@ export default function Post({ url }) {
     fetchedPost && (
       <div className="post index">
         {/* { data.postid } */}
-        <InfoBar {...infoBar} />
+        <InfoBar args={infoBar} />
         <div className="content">
           <div className="pic" onDoubleClick={doubleClickToLike}>
             <img

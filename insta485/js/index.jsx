@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Post from "./post";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Post from "./post";
 
 export default function Index() {
   const [render, setRender] = useState(false);
@@ -22,10 +22,13 @@ export default function Index() {
           setPosts(json.results);
           setRender(true);
         }
-        return () => (bool = true);
+        return () => {
+          bool = true;
+        };
       } catch (error) {
         console.log(error);
       }
+      return null;
     })();
   }, []);
 
@@ -40,11 +43,15 @@ export default function Index() {
           setPosts([...posts, ...json.results]);
           setNextUrl(json.next);
         }
-        return () => (bool = true);
-      } else setHasMore(false);
+        return () => {
+          bool = true;
+        };
+      }
+      setHasMore(false);
     } catch (error) {
       console.log(error);
     }
+    return null;
   };
 
   return (

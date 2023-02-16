@@ -15,12 +15,15 @@ export default function useAPI(url, urlMethod, depenArr, cond, switchFunc) {
           if (!response.ok) throw Error(response.statusText);
           const json = await response.json();
           if (!bool) setData(json);
-          return () => (bool = true); // Cleanup function whenever Post component unmounts or re-renders. Avoid updating state if a Post is about to unmount or re-render.
+          return () => {
+            bool = true;
+          }; // Cleanup function whenever Post component unmounts or re-renders. Avoid updating state if a Post is about to unmount or re-render.
         } catch (error) {
           console.log(error);
         }
       }
+      return null;
     })();
-  }, depenArr);
+  }, [depenArr, cond, switchFunc, url, urlMethod]);
   return data;
 }

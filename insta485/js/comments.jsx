@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export default function Comments({
   comments,
@@ -10,23 +11,22 @@ export default function Comments({
   return (
     <div className="cmt-container">
       <div className="comments">
-        {comments.map((cmt) => {
-          return (
-            <div className="each-cmt" key={cmt.commentid}>
-              <span className="comment-text">
-                <a href={cmt.ownerShowUrl}>{cmt.owner}</a> {cmt.text}
-              </span>
-              {cmt.lognameOwnsThis ? (
-                <button
-                  className="delete-comment-button"
-                  onClick={() => onClick(cmt.commentid)}
-                >
-                  Delete comment
-                </button>
-              ) : null}
-            </div>
-          );
-        })}
+        {comments.map((cmt) => (
+          <div className="each-cmt" key={cmt.commentid}>
+            <span className="comment-text">
+              <a href={cmt.ownerShowUrl}>{cmt.owner}</a> {cmt.text}
+            </span>
+            {cmt.lognameOwnsThis ? (
+              <button
+                type="submit"
+                className="delete-comment-button"
+                onClick={() => onClick(cmt.commentid)}
+              >
+                Delete comment
+              </button>
+            ) : null}
+          </div>
+        ))}
       </div>
       <form className="comment-form" onSubmit={onSubmit}>
         <input
@@ -38,3 +38,11 @@ export default function Comments({
     </div>
   );
 }
+
+Comments.propTypes = {
+  comments: PropTypes.instanceOf(Array).isRequired,
+  val: PropTypes.instanceOf(Object).isRequired,
+  onChange: PropTypes.instanceOf(Object).isRequired,
+  onSubmit: PropTypes.instanceOf(Object).isRequired,
+  onClick: PropTypes.instanceOf(Object).isRequired,
+};
