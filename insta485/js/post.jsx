@@ -162,7 +162,7 @@ export default function Post({ url }) {
       }
       return null;
     })();
-  }, [cmtSwitch, comments, data.postid, fetchedPost, newComment]);
+  }, [cmtSwitch]);
   const commented = (e) => {
     e.preventDefault();
     setCmtSwitch(!cmtSwitch);
@@ -235,7 +235,14 @@ export default function Post({ url }) {
     fetchedPost && (
       <div className="post index">
         {/* { data.postid } */}
-        <InfoBar args={infoBar} />
+        <InfoBar
+          postLink={infoBar.postLink}
+          timeCreated={infoBar.timeCreated}
+          poster={infoBar.poster}
+          pfp={infoBar.pfp}
+          posterLink={infoBar.posterLink}
+        />
+        {/* <InfoBar {...infoBar} /> */}
         <div className="content">
           <div className="pic" onDoubleClick={doubleClickToLike}>
             <img

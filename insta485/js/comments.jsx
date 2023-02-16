@@ -40,9 +40,18 @@ export default function Comments({
 }
 
 Comments.propTypes = {
-  comments: PropTypes.instanceOf(Array).isRequired,
-  val: PropTypes.instanceOf(Object).isRequired,
-  onChange: PropTypes.instanceOf(Object).isRequired,
-  onSubmit: PropTypes.instanceOf(Object).isRequired,
-  onClick: PropTypes.instanceOf(Object).isRequired,
+  comments: PropTypes.arrayOf(
+    PropTypes.shape({
+      commentid: PropTypes.number.isRequired,
+      lognameOwnsThis: PropTypes.bool.isRequired,
+      owner: PropTypes.string.isRequired,
+      ownerShowUrl: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  val: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };

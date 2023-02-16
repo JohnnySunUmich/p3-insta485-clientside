@@ -1,8 +1,14 @@
 import React from "react";
 import moment from "moment";
 
-export default function InfoBar(args) {
-  const { postLink, timeCreated, poster, pfp, posterLink } = args;
+export default function InfoBar({
+  postLink,
+  timeCreated,
+  poster,
+  pfp,
+  posterLink,
+}) {
+  // const { postLink, timeCreated, poster, pfp, posterLink } = args;
   return (
     <div className="header">
       <div className="post-er">

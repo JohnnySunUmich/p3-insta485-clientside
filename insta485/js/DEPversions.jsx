@@ -1,6 +1,6 @@
 // // Version 1: Use promises
 // useEffect(() => {
-//   let ignoreStaleRequest = false; // Declare a boolean flag that we can use to cancel the API request.
+//   let ignoreStaleRequest = false; //Declare a boolean flag that we can use to cancel the API request.
 
 //   // Call REST API to get the post's information
 //   fetch(url, { credentials: "same-origin" })
@@ -31,7 +31,7 @@
 //   (async () => {
 //     try {
 //       setFetchedPost(false);
-//       let ignoreStaleRequest = false; // To cancel the API request.
+//       let ignoreStaleRequest = false; //To cancel the API request.
 //       const response = await fetch(url, { credentials: "same-origin" });
 //       if (!response.ok) throw Error(response.statusText);
 //       const data = await response.json();
@@ -51,9 +51,7 @@
 //           url: data.likes.url,
 //         });
 //       }
-//       return () => {
-//         ignoreStaleRequest = true;
-//       }; // Cleanup function whenever Post component unmounts or re-renders. Avoid updating state if a Post is about to unmount or re-render.
+//       return () => (ignoreStaleRequest = true); //Cleanup function whenever Post component unmounts or re-renders. Avoid updating state if a Post is about to unmount or re-render.
 //     } catch (error) {
 //       console.log(error);
 //     }
